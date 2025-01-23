@@ -1,73 +1,80 @@
-const API_KEY = "499d03534f224e8890dcd1f95376001c"
-const url = "https://newsapi.org/v2/everything?q="
+let containerEl = document.getElementById("speedTypingTest");
+let timerEl = document.getElementById("timer");
+let quoteEl = document.getElementById("quoteDisplay");
+let resultEl = document.getElementById("result");
+let textareaEl = document.getElementById("quoteInput");
+let submitEl = document.getElementById("submitBtn");
+let resetEl = document.getElementById("resetBtn");
+let spinnerEl = document.getElementById("spinner");
+let uniqueId = null;
+let counter = 0
 
+function seconds() {
+    uniqueId = setInterval(function() {
+        timerEl.textContent = counter + " seconds"
 
-
-async function fetchData(query){
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`)
-    const data = await res.json()
-    return data
+        counter = counter + 1
+    }, 1000);
 }
-fetchData("all").then(data => renderMain(data.articles))
 
-//menu btn
-let mobilemenu = document.querySelector(".mobile")
-let menuBtn = document.querySelector(".menuBtn")
-let menuBtnDisplay = true;
-
-menuBtn.addEventListener("click",()=>{
-    mobilemenu.classList.toggle("hidden")
-})
+function reCall() {
 
 
-//render news 
-function renderMain(arr){
-    let mainHTML = ''
-    for(let i = 0 ; i < arr.length ;i++){
-        if(arr[i].urlToImage){
-        mainHTML += ` <div class="card">
-                        <a href=${arr[i].url}>
-                        <img src=${arr[i].urlToImage} lazy="loading" />
-                        <h4>${arr[i].title}</h4>
-                        <div class="publishbyDate">
-                            <p>${arr[i].source.name}</p>
-                            <span>•</span>
-                            <p>${new Date(arr[i].publishedAt).toLocaleDateString()}</p>
-                        </div>
-                        <div class="desc">
-                           ${arr[i].description}
-                        </div>
-                        </a>
-                     </div>
-        `
-        }
+
+    let url = "https://apis.ccbp.in/random-quote"
+
+    fetch(url)
+        .then(function(response) {
+            return response.json()
+
+        })
+        .then(function(jsonData) {
+            quoteEl.textContent = jsonData.content
+            seconds()
+
+        });
+}
+reCall();
+
+function submitButton() {
+    if ((quoteEl.textContent) === (textareaEl.value)) {
+        clearInterval(uniqueId);
+        resultEl.textContent = "You typed in " + counter + " seconds"
+
+
+    } else {
+        resultEl.textContent = "You typed incorrect sentence";
     }
 
-    document.querySelector("main").innerHTML = mainHTML
+
+
+
+
+
 }
 
+function calling() {
 
-const searchBtn = document.getElementById("searchForm")
-const searchBtnMobile = document.getElementById("searchFormMobile")
-const searchInputMobile = document.getElementById("searchInputMobile") 
-const searchInput = document.getElementById("searchInput")
-
-searchBtn.addEventListener("submit",async(e)=>{
-    e.preventDefault()
-    console.log(searchInput.value)
-
-    const data = await fetchData(searchInput.value)
-    renderMain(data.articles)
-
-})
-searchBtnMobile.addEventListener("submit",async(e)=>{
-    e.preventDefault()
-    const data = await fetchData(searchInputMobile.value)
-    renderMain(data.articles)
-})
-
-
-async function Search(query){
-    const data = await fetchData(query)
-    renderMain(data.articles)
+    reCall();
 }
+
+resetEl.addEventListener("click", function() {
+
+    counter = 0
+    clearInterval(uniqueId)
+
+    containerEl.classList.add("d-none");
+
+    spinnerEl.classList.remove("d-none");
+    calling();
+
+
+
+
+
+});
+submitEl.addEventListener("click", function() {
+    submitButton();
+});
+
+

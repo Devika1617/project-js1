@@ -1,80 +1,52 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Newsweb</title>
+<html>
 
-    <!--font awesome-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel ="stylesheet" href="./index.css">
+</head>
 
-    <!--Google font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+<body>
+    <div class="bg-container">
 
-    <!---css style-->
-    <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <header>
-      <img src="AI--1.png" width="30px" />
+        <div class="p-4" id="speedTypingTest">
 
-      <div class="inputSearch desktop">
-        <form id="searchForm">
-          <input type="text" placeholder="Type to search..." id="searchInput" />
-          <span> <i class="fa-solid fa-search"></i></span>
-        </form>
-      </div>
-      <nav class="desktop">
-        <ul>
-          <li onclick="Search('ipl2023')">IPL 2023</li>
-          <li onclick="Search('tech')">Tech</li>
-          <li onclick="Search('food')">Food</li>
-          <li onclick="Search('movies')">Movies</li>
-          <li onclick="Search('business')">Business</li>
-        </ul>
-      </nav>
+            <h1 class="heading">Speed Typing Test</h1>
+            <p>On your fingers lets set Go!</p>
+            <div class="d-flex flex-row mb-3">
+                <img src="https://assets.ccbp.in/frontend/dynamic-webapps/clock-img.png" class="image" />
+                <p id="timer" class="ml-2 p-1">seconds</p>
 
-      <div class="menuBtn">
-        <i class="fa-solid fa-bars"></i>
-      </div>
+            </div>
 
-      <!------>
-      <div class="mobile hidden">
-        <nav>
-          <ul>
-            <li onclick="Search('ipl2023')">IPL 2023</li>
-            <li onclick="Search('tech')">Tech</li>
-            <li onclick="Search('food')">Food</li>
-            <li onclick="Search('movies')">Movies</li>
-            <li onclick="Search('business')">Business</li>
-          </ul>
-        </nav>
-        <div class="inputSearch">
-        <form id="searchFormMobile" id="searchInputMobile">
-          <input type="text" placeholder="Type to search..." />
-          <span> <i class="fa-solid fa-search"></i></span>
+
         </div>
-        </form>
-      </div>
-    </header>
+        <div class="d-none" id="spinner">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-container">
+            <p id="quoteDisplay">
 
-    <!-- main  -->
+            </p>
+            <div class="text-center">
+                <textarea id="quoteInput" rows="6" cols="25" placeholder="Type here!!" class=" "></textarea>
+            </div>
+        </div>
 
-    <main></main>
+        <p id="result"></p>
+        <button id="submitBtn">Submit</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+   <script src="./index.js"></script>
+</body>
 
-    <script src="index.js"></script>
-  </body>
-</html>
+</html> 
+
+
